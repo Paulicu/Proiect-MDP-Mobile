@@ -4,13 +4,9 @@
              x:Class="Proiect_MDP_Mobile.ServicePage"
              Title="ServicePage">
     <StackLayout Margin="20">
-        <Editor Placeholder="Enter the type of the service"
-                Text="{Binding Type}"
-                HeightRequest="100" />
-        
         <Editor Placeholder="Enter the description of the service"
                 Text="{Binding Description}"
-                HeightRequest="100" />
+                HeightRequest="50" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -22,5 +18,19 @@
                     Text="Delete"
                     Clicked="OnDeleteButtonClicked"/>
         </Grid>
+        
+        <ListView x:Name="listView"
+                    Margin="20">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Detail="{Binding Description}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Button Text="Add/Choose Service Type" 
+                MaximumWidthRequest="300"
+                Clicked="OnChooseButtonClicked"
+        />
     </StackLayout>
 </ContentPage>
