@@ -3,34 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Proiect_MDP_Mobile.ServicePage"
              Title="ServicePage">
-    <StackLayout Margin="20">
-        <Editor Placeholder="Enter the description of the service"
-                Text="{Binding Description}"
-                HeightRequest="50" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button Text="Save"
-                    Clicked="OnSaveButtonClicked" />
-            <Button Grid.Column="1"
-                    Text="Delete"
-                    Clicked="OnDeleteButtonClicked"/>
-        </Grid>
-        
-        <ListView x:Name="listView"
-                    Margin="20">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Detail="{Binding Description}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        <Button Text="Add/Choose Service Type" 
-                MaximumWidthRequest="300"
-                Clicked="OnChooseButtonClicked"
-        />
-    </StackLayout>
+    <ContentPage.Content xmlns:local="clr-namespace:Proiect_MDP_Mobile">
+        <StackLayout Margin="20">
+            <Editor Placeholder="Enter the description of the service"
+                    Text="{Binding Description}"
+                    HeightRequest="50" >
+
+                <Editor.Behaviors>
+                    <local:ValidationBehaviour />
+                </Editor.Behaviors>
+
+           
+
+            </Editor>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Save"
+                        Clicked="OnSaveButtonClicked" />
+                <Button Grid.Column="1"
+                        Text="Delete"
+                        Clicked="OnDeleteButtonClicked"/>
+            </Grid>
+
+            <ListView x:Name="listView"
+                        Margin="20">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Detail="{Binding Description}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Add/Choose Service Type" 
+                    MaximumWidthRequest="300"
+                    Clicked="OnChooseButtonClicked"
+            />
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
