@@ -50,23 +50,23 @@ namespace Proiect_MDP_Mobile.Data
             return _database.DeleteAsync(slist);
         }
 
-        // Service:
+        // Service Type:
 
-        public Task<int> SaveServiceAsync(ServiceType product)
+        public Task<int> SaveServiceAsync(ServiceType serviceType)
         {
-            if (product.ID != 0)
+            if (serviceType.ID != 0)
             {
-                return _database.UpdateAsync(product);
+                return _database.UpdateAsync(serviceType);
             }
             else
             {
-                return _database.InsertAsync(product);
+                return _database.InsertAsync(serviceType);
             }
         }
 
-        public Task<int> DeleteServiceAsync(ServiceType product)
+        public Task<int> DeleteServiceAsync(ServiceType serviceType)
         {
-            return _database.DeleteAsync(product);
+            return _database.DeleteAsync(serviceType);
         }
 
         public Task<List<ServiceType>> GetServicesAsync()
@@ -74,31 +74,31 @@ namespace Proiect_MDP_Mobile.Data
             return _database.Table<ServiceType>().ToListAsync();
         }
 
-        public Task<int> SaveListServiceTypeAsync(ListService listp)
+        public Task<int> SaveListServiceTypeAsync(ListService listS)
         {
-            if (listp.ID != 0)
+            if (listS.ID != 0)
             {
-                return _database.UpdateAsync(listp);
+                return _database.UpdateAsync(listS);
             }
             else
             {
-                return _database.InsertAsync(listp);
+                return _database.InsertAsync(listS);
             }
         }
 
-        public Task<List<ServiceType>> GetListServicesAsync(int shoplistid)
+        public Task<List<ServiceType>> GetListServicesAsync(int servicelistid)
         {
             return _database.QueryAsync<ServiceType>(
-            "select P.ID, P.Description from ServiceType P"
-            + " inner join ListService LP"
-            + " on P.ID = LP.ServiceTypeID where LP.ServiceListID = ?",
-            shoplistid);
+            "select S.ID, S.Description from ServiceType S"
+            + " inner join ListService LS"
+            + " on S.ID = LS.ServiceTypeID where LS.ServiceListID = ?",
+            servicelistid);
         }
 
-        public Task<int> DeleteServiceTypeFromServiceListAsync(int productId, int shopListId)
+        public Task<int> DeleteServiceTypeFromServiceListAsync(int serviceTypeId, int serviceListId)
         {
             return _database.Table<ListService>()
-                .Where(lp => lp.ServiceTypeID == productId && lp.ServiceListID == shopListId)
+                .Where(ls => ls.ServiceTypeID == serviceTypeId && ls.ServiceListID == serviceListId)
                 .DeleteAsync();
         }
 
