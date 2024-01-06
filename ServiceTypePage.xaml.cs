@@ -13,15 +13,15 @@ public partial class ServiceTypePage : ContentPage
 
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
-        var product = (ServiceType)BindingContext;
-        await App.Database.SaveServiceAsync(product);
+        var serviceType = (ServiceType)BindingContext;
+        await App.Database.SaveServiceAsync(serviceType);
         listView.ItemsSource = await App.Database.GetServicesAsync();
     }
 
     async void OnDeleteButtonClicked(object sender, EventArgs e)
     {
-        var product = (ServiceType)BindingContext;
-        await App.Database.DeleteServiceAsync(product);
+        var serviceType = (ServiceType)BindingContext;
+        await App.Database.DeleteServiceAsync(serviceType);
         listView.ItemsSource = await App.Database.GetServicesAsync();
     }
 
@@ -33,17 +33,17 @@ public partial class ServiceTypePage : ContentPage
 
     async void OnAddButtonClicked(object sender, EventArgs e)
     {
-        ServiceType p;
+        ServiceType s;
         if (listView.SelectedItem != null)
         {
-            p = listView.SelectedItem as ServiceType;
-            var lp = new ListService()
+            s = listView.SelectedItem as ServiceType;
+            var ls = new ListService()
             {
                 ServiceListID = sl.ID,
-                ServiceTypeID = p.ID
+                ServiceTypeID = s.ID
             };
-            await App.Database.SaveListServiceTypeAsync(lp);
-            p.ListServices = new List<ListService> { lp };
+            await App.Database.SaveListServiceTypeAsync(ls);
+            s.ListServices = new List<ListService> { ls };
             await Navigation.PopAsync();
         }
     }

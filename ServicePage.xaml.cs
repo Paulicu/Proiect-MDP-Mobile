@@ -21,12 +21,11 @@ public partial class ServicePage : ContentPage
 
     async void OnChooseButtonClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ServiceTypePage((ServiceList)
-        this.BindingContext)
-        {
-            BindingContext = new ServiceType()
-        });
-
+        await Navigation
+            .PushAsync(new ServiceTypePage((ServiceList)this.BindingContext)
+                       {
+                            BindingContext = new ServiceType()
+                       });
     }
 
     protected override async void OnAppearing()
@@ -39,14 +38,14 @@ public partial class ServicePage : ContentPage
 
     async void OnDeleteServiceTypeButtonClicked(object sender, EventArgs e)
     {
-        var shopList = BindingContext as ServiceList;
-        var selectedProduct = listView.SelectedItem as ServiceType;
+        var serviceList = BindingContext as ServiceList;
+        var selectedServiceType = listView.SelectedItem as ServiceType;
 
-        if (selectedProduct != null && shopList != null)
+        if (selectedServiceType != null && serviceList != null)
         {
-            await App.Database.DeleteServiceTypeFromServiceListAsync(selectedProduct.ID, shopList.ID);
+            await App.Database.DeleteServiceTypeFromServiceListAsync(selectedServiceType.ID, serviceList.ID);
 
-            listView.ItemsSource = await App.Database.GetListServicesAsync(shopList.ID);
+            listView.ItemsSource = await App.Database.GetListServicesAsync(serviceList.ID);
 
             listView.SelectedItem = null;
         }
@@ -55,6 +54,7 @@ public partial class ServicePage : ContentPage
             await DisplayAlert("No Service Type Selected", "Please select a service type to delete.", "OK");
         }
     }
+
     public ServicePage()
 	{
 		InitializeComponent();
