@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_MDP_Mobile.RacketListPage"
+             Title="Rackets">
+    <StackLayout>
+        <ListView x:Name="racketListView" 
+                  ItemSelected="OnRacketListViewItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Edition}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout x:Name="buttonContainer" IsVisible="false" Orientation="Horizontal">
+            <Button x:Name="buttonViewRacket" Text="View" Clicked="OnViewRacketClicked" />
+            <Button x:Name="buttonEditRacket" Text="Edit" Clicked="OnEditRacketClicked" />
+            <Button x:Name="buttonDeleteRacket" Text="Delete" Clicked="OnDeleteRacketClicked" />
+            <Button x:Name="buttonCancel" Text="Cancel" Clicked="OnCancelClicked" />
+        </StackLayout>
+
+        <Button x:Name="buttonAddRacket" Text="Add Racket" Clicked="OnAddRacketClicked" />
+    </StackLayout>
+</ContentPage>

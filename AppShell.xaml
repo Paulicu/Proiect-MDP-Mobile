@@ -16,7 +16,8 @@
         <ShellContent
             Title="Services"
             ContentTemplate="{DataTemplate local:ServiceEntryPage}"
- />
+        />
+        
         <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate local:AboutPage}"

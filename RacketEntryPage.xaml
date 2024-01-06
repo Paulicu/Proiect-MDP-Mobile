@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_MDP_Mobile.RacketEntryPage"
+             Title="Add Racket">
+    <StackLayout>
+        <Label Text="Name" />
+        <Entry x:Name="entryName" />
+
+        <Label Text="Material" />
+        <Entry x:Name="entryMaterial" />
+
+        <Label Text="Technology" />
+        <Entry x:Name="entryTechnology" />
+
+        <Label Text="Weight" />
+        <Entry x:Name="entryWeight" Keyboard="Numeric" />
+
+        <Label Text="Edition" />
+        <DatePicker x:Name="datePickerEdition" />
+
+        <Button Text="Save" Clicked="OnSaveRacketButtonClicked" />
+    </StackLayout>
+</ContentPage>

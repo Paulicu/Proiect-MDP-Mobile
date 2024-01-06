@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_MDP_Mobile.RacketViewPage"
+             Title="Racket Details">
+    <StackLayout>
+        <Label Text="Name:" />
+        <Label Text="{Binding Name}" />
+
+        <Label Text="Material:" />
+        <Label Text="{Binding Material}" />
+
+        <Label Text="Technology:" />
+        <Label Text="{Binding Technology}" />
+
+        <Label Text="Weight:" />
+        <Label Text="{Binding Weight}" />
+
+        <Label Text="Edition:" />
+        <Label Text="{Binding Edition}" />
+
+        <Button Text="Back to List" Clicked="OnBackToListClicked" />
+    </StackLayout>
+</ContentPage>

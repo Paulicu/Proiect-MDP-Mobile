@@ -18,6 +18,7 @@ namespace Proiect_MDP_Mobile.Data
             _database.CreateTableAsync<ServiceList>().Wait();
             _database.CreateTableAsync<ServiceType>().Wait();
             _database.CreateTableAsync<ListService>().Wait();
+            _database.CreateTableAsync<Racket>().Wait();
         }
 
         // Service List:
@@ -50,8 +51,8 @@ namespace Proiect_MDP_Mobile.Data
             return _database.DeleteAsync(slist);
         }
 
-        // Service Type:
-
+        // -----------------------------------------------------------------------------------------------------------
+        // CRUD Operations for Service Types:
         public Task<int> SaveServiceAsync(ServiceType serviceType)
         {
             if (serviceType.ID != 0)
@@ -100,6 +101,37 @@ namespace Proiect_MDP_Mobile.Data
             return _database.Table<ListService>()
                 .Where(ls => ls.ServiceTypeID == serviceTypeId && ls.ServiceListID == serviceListId)
                 .DeleteAsync();
+        }
+
+        // -----------------------------------------------------------------------------------------------------------
+        // CRUD Operations for Rackets:
+        public Task<List<Racket>> GetRacketsAsync()
+        {
+            return _database.Table<Racket>().ToListAsync();
+        }
+
+        public Task<Racket> GetRacketAsync(int id)
+        {
+            return _database.Table<Racket>()
+                .Where(i => i.ID == id)
+                .FirstOrDefaultAsync();
+        }
+
+        public Task<int> SaveRacketAsync(Racket racket)
+        {
+            if (racket.ID != 0)
+            {
+                return _database.UpdateAsync(racket);
+            }
+            else
+            {
+                return _database.InsertAsync(racket);
+            }
+        }
+
+        public Task<int> DeleteRacketAsync(Racket racket)
+        {
+            return _database.DeleteAsync(racket);
         }
 
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace Proiect_MDP_Mobile.Models
 {
@@ -16,5 +17,8 @@ namespace Proiect_MDP_Mobile.Models
         [MaxLength(250), Unique]
         public string Description { get; set; }
         public DateTime Date { get; set; }
+
+        [ForeignKey(typeof(Racket))]
+        public int RacketID { get; set; }
     }
 }
