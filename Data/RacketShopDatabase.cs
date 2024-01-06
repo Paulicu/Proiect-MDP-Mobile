@@ -134,5 +134,10 @@ namespace Proiect_MDP_Mobile.Data
             return _database.DeleteAsync(racket);
         }
 
+        public Task<int> UpdateRacketAsync(Racket racket)
+        {
+            return _database.UpdateAsync(racket);
+        }
+
     }
 }

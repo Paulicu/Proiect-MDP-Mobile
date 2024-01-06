@@ -39,7 +39,13 @@ public partial class RacketListPage : ContentPage
 
     private void OnEditRacketClicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new RacketEditPage());
+        var selectedRacket = (Racket)racketListView.SelectedItem;
+        if (selectedRacket != null)
+        {
+            Navigation.PushAsync(new RacketEditPage(selectedRacket));
+            racketListView.SelectedItem = null;
+            UpdateButtonVisibility();
+        }
     }
 
     private async void OnDeleteRacketClicked(object sender, EventArgs e)
