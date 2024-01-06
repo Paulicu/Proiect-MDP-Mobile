@@ -95,5 +95,12 @@ namespace Proiect_MDP_Mobile.Data
             shoplistid);
         }
 
+        public Task<int> DeleteServiceTypeFromServiceListAsync(int productId, int shopListId)
+        {
+            return _database.Table<ListService>()
+                .Where(lp => lp.ServiceTypeID == productId && lp.ServiceListID == shopListId)
+                .DeleteAsync();
+        }
+
     }
 }

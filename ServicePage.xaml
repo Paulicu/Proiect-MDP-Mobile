@@ -41,6 +41,12 @@
                     MaximumWidthRequest="300"
                     Clicked="OnChooseButtonClicked"
             />
+
+            <StackLayout HeightRequest="10" />
+            <Button Text="Delete Service Type"
+                    MaximumWidthRequest="300"
+                    Clicked="OnDeleteServiceTypeButtonClicked" 
+            />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

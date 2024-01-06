@@ -37,6 +37,24 @@ public partial class ServicePage : ContentPage
         listView.ItemsSource = await App.Database.GetListServicesAsync(servicel.ID);
     }
 
+    async void OnDeleteServiceTypeButtonClicked(object sender, EventArgs e)
+    {
+        var shopList = BindingContext as ServiceList;
+        var selectedProduct = listView.SelectedItem as ServiceType;
+
+        if (selectedProduct != null && shopList != null)
+        {
+            await App.Database.DeleteServiceTypeFromServiceListAsync(selectedProduct.ID, shopList.ID);
+
+            listView.ItemsSource = await App.Database.GetListServicesAsync(shopList.ID);
+
+            listView.SelectedItem = null;
+        }
+        else
+        {
+            await DisplayAlert("No Service Type Selected", "Please select a service type to delete.", "OK");
+        }
+    }
     public ServicePage()
 	{
 		InitializeComponent();
