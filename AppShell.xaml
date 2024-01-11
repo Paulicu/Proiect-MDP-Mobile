@@ -12,12 +12,12 @@
             Title="Home"
             ContentTemplate="{DataTemplate local:MainPage}"
         />
-        
+
         <ShellContent
-            Title="Services"
-            ContentTemplate="{DataTemplate local:ServiceEntryPage}"
+             Title="Services"
+             ContentTemplate="{DataTemplate local:ServiceListPage}"
         />
-        
+
         <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate local:AboutPage}"

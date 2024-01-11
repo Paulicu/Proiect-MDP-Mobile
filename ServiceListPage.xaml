@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_MDP_Mobile.ServiceListPage"
+             Title="Services">
+    <StackLayout>
+        <ListView x:Name="serviceListView" 
+                  ItemSelected="OnServiceListViewItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Type}" Detail="{Binding Description}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout x:Name="buttonContainer" IsVisible="false" Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
+            <Button x:Name="buttonViewService" Text="View" Clicked="OnViewServiceClicked" Margin="0,0,10,0" VerticalOptions="CenterAndExpand" WidthRequest="75" BackgroundColor="Green" />
+            <Button x:Name="buttonEditService" Text="Edit" Clicked="OnEditServiceClicked" Margin="0,0,10,0" VerticalOptions="CenterAndExpand" WidthRequest="75" BackgroundColor="YellowGreen"/>
+            <Button x:Name="buttonDeleteService" Text="Delete" Clicked="OnDeleteServiceClicked" Margin="0,0,10,0" VerticalOptions="CenterAndExpand" WidthRequest="75" BackgroundColor="Red" />
+            <Button x:Name="buttonCancel" Text="Cancel" Clicked="OnCancelClicked" Margin="0,0,10,0" VerticalOptions="CenterAndExpand" WidthRequest="75" BackgroundColor="OrangeRed" />
+        </StackLayout>
+
+        <Button x:Name="buttonAddService" Text="Add Service" Clicked="OnAddServiceClicked" Margin="0,10,0,0" />
+    </StackLayout>
+</ContentPage>

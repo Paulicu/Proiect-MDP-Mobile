@@ -15,93 +15,9 @@ namespace Proiect_MDP_Mobile.Data
         public RacketShopDatabase(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<ServiceList>().Wait();
-            _database.CreateTableAsync<ServiceType>().Wait();
-            _database.CreateTableAsync<ListService>().Wait();
             _database.CreateTableAsync<Racket>().Wait();
             _database.CreateTableAsync<Review>().Wait();
-        }
-
-        // Service List:
-        public Task<List<ServiceList>> GetServiceListsAsync()
-        {
-            return _database.Table<ServiceList>().ToListAsync();
-        }
-
-        public Task<ServiceList> GetServiceListAsync(int id)
-        {
-            return _database.Table<ServiceList>()
-                .Where(i => i.ID == id)
-                .FirstOrDefaultAsync();
-        }
-
-        public Task<int> SaveServiceListAsync(ServiceList slist)
-        {
-            if (slist.ID != 0)
-            {
-                return _database.UpdateAsync(slist);
-            }
-            else
-            {
-                return _database.InsertAsync(slist);
-            }
-        }
-
-        public Task<int> DeleteServiceListAsync(ServiceList slist)
-        {
-            return _database.DeleteAsync(slist);
-        }
-
-        // -----------------------------------------------------------------------------------------------------------
-        // CRUD Operations for Service Types:
-        public Task<int> SaveServiceAsync(ServiceType serviceType)
-        {
-            if (serviceType.ID != 0)
-            {
-                return _database.UpdateAsync(serviceType);
-            }
-            else
-            {
-                return _database.InsertAsync(serviceType);
-            }
-        }
-
-        public Task<int> DeleteServiceAsync(ServiceType serviceType)
-        {
-            return _database.DeleteAsync(serviceType);
-        }
-
-        public Task<List<ServiceType>> GetServicesAsync()
-        {
-            return _database.Table<ServiceType>().ToListAsync();
-        }
-
-        public Task<int> SaveListServiceTypeAsync(ListService listS)
-        {
-            if (listS.ID != 0)
-            {
-                return _database.UpdateAsync(listS);
-            }
-            else
-            {
-                return _database.InsertAsync(listS);
-            }
-        }
-
-        public Task<List<ServiceType>> GetListServicesAsync(int servicelistid)
-        {
-            return _database.QueryAsync<ServiceType>(
-            "select S.ID, S.Description from ServiceType S"
-            + " inner join ListService LS"
-            + " on S.ID = LS.ServiceTypeID where LS.ServiceListID = ?",
-            servicelistid);
-        }
-
-        public Task<int> DeleteServiceTypeFromServiceListAsync(int serviceTypeId, int serviceListId)
-        {
-            return _database.Table<ListService>()
-                .Where(ls => ls.ServiceTypeID == serviceTypeId && ls.ServiceListID == serviceListId)
-                .DeleteAsync();
+            _database.CreateTableAsync<Service>().Wait();
         }
 
         // -----------------------------------------------------------------------------------------------------------
@@ -171,6 +87,36 @@ namespace Proiect_MDP_Mobile.Data
         public Task<int> DeleteReviewAsync(Review review)
         {
             return _database.DeleteAsync(review);
+        }
+
+        // -----------------------------------------------------------------------------------------------------------
+        // CRUD Operations for Services:
+
+        public Task<List<Service>> GetServicesAsync()
+        {
+            return _database.Table<Service>().ToListAsync();
+        }
+
+        public Task<Service> GetServiceAsync(int id)
+        {
+            return _database.Table<Service>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+
+        public Task<int> SaveServiceAsync(Service service)
+        {
+            if (service.ID != 0)
+            {
+                return _database.UpdateAsync(service);
+            }
+            else
+            {
+                return _database.InsertAsync(service);
+            }
+        }
+
+        public Task<int> DeleteServiceAsync(Service service)
+        {
+            return _database.DeleteAsync(service);
         }
     }
 }
