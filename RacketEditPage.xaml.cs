@@ -1,50 +1,67 @@
 using Proiect_MDP_Mobile.Models;
+using System.Collections.ObjectModel;
 
 namespace Proiect_MDP_Mobile;
 
 public partial class RacketEditPage : ContentPage
 {
-    private Racket editedRacket;
-    public RacketEditPage(Racket selectedRacket)
-	{
-		InitializeComponent();
-        editedRacket = selectedRacket;
-        LoadRacketDetails();
+    private Racket _racket;
+    private ObservableCollection<Shop> _shops;
+
+    public RacketEditPage(Racket racket)
+    {
+        InitializeComponent();
+        _racket = racket;
+        BindingContext = _racket;
     }
 
-    private void LoadRacketDetails()
+    protected override async void OnAppearing()
     {
-        entryName.Text = editedRacket.Name;
-        entryMaterial.Text = editedRacket.Material;
-        entryTechnology.Text = editedRacket.Technology;
-        entryWeight.Text = editedRacket.Weight.ToString();
-        datePickerEdition.Date = editedRacket.Edition;
+        base.OnAppearing();
+
+        _shops = new ObservableCollection<Shop>(await App.Database.GetShopsAsync());
+        pickerShop.ItemsSource = _shops;
+        pickerShop.ItemDisplayBinding = new Binding("Name");
+
+        if (_racket != null)
+        {
+            entryName.Text = _racket.Name;
+            entryMaterial.Text = _racket.Material;
+            entryTechnology.Text = _racket.Technology;
+            entryWeight.Text = _racket.Weight.ToString();
+            datePickerEdition.Date = _racket.Edition;
+
+            if (_racket.ShopID != 0)
+            {
+                var selectedShop = await App.Database.GetShopAsync(_racket.ShopID);
+                pickerShop.SelectedItem = selectedShop;
+            }
+        }
     }
 
     private async void OnSaveChangesButtonClicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(entryName.Text) || string.IsNullOrWhiteSpace(entryMaterial.Text) || string.IsNullOrWhiteSpace(entryTechnology.Text) || string.IsNullOrWhiteSpace(entryWeight.Text))
+        if (string.IsNullOrWhiteSpace(entryName.Text) || string.IsNullOrWhiteSpace(entryMaterial.Text) || string.IsNullOrWhiteSpace(entryTechnology.Text))
         {
-            await DisplayAlert("Error", "All fields must be completed.", "OK");
+            await DisplayAlert("Error", "All fields must be filled in.", "OK");
             return;
         }
 
-        if (!decimal.TryParse(entryWeight.Text, out decimal weightValue))
-        {
-            await DisplayAlert("Error", "Please enter a valid numeric value for weight.", "OK");
-            return;
-        }
+        _racket.Name = entryName.Text;
+        _racket.Material = entryMaterial.Text;
+        _racket.Technology = entryTechnology.Text;
+        _racket.Weight = decimal.TryParse(entryWeight.Text, out decimal weightValue) ? weightValue : 0;
+        _racket.Edition = datePickerEdition.Date;
 
-        // Actualizare obiect Racket cu noile date
-        editedRacket.Name = entryName.Text;
-        editedRacket.Material = entryMaterial.Text;
-        editedRacket.Technology = entryTechnology.Text;
-        editedRacket.Weight = weightValue;
-        editedRacket.Edition = datePickerEdition.Date;
+        var selectedShop = (Shop)pickerShop.SelectedItem;
+        _racket.ShopID = selectedShop?.ID ?? 0;
 
-        await DisplayAlert("Success", "Racket updated successfully!", "OK");
-
-        await App.Database.UpdateRacketAsync(editedRacket);
+        await App.Database.UpdateRacketAsync(_racket);
         await Navigation.PopAsync();
+    }
+
+    private void OnCancelClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
     }
 }

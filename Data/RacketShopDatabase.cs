@@ -18,6 +18,7 @@ namespace Proiect_MDP_Mobile.Data
             _database.CreateTableAsync<Racket>().Wait();
             _database.CreateTableAsync<Review>().Wait();
             _database.CreateTableAsync<Service>().Wait();
+            _database.CreateTableAsync<Shop>().Wait();
         }
 
         // -----------------------------------------------------------------------------------------------------------
@@ -117,6 +118,36 @@ namespace Proiect_MDP_Mobile.Data
         public Task<int> DeleteServiceAsync(Service service)
         {
             return _database.DeleteAsync(service);
+        }
+
+        // -----------------------------------------------------------------------------------------------------------
+        // CRUD Operations for Shops:
+
+        public Task<List<Shop>> GetShopsAsync()
+        {
+            return _database.Table<Shop>().ToListAsync();
+        }
+
+        public Task<Shop> GetShopAsync(int id)
+        {
+            return _database.Table<Shop>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+
+        public Task<int> SaveShopAsync(Shop shop)
+        {
+            if (shop.ID != 0)
+            {
+                return _database.UpdateAsync(shop);
+            }
+            else
+            {
+                return _database.InsertAsync(shop);
+            }
+        }
+
+        public Task<int> DeleteShopAsync(Shop shop)
+        {
+            return _database.DeleteAsync(shop);
         }
     }
 }

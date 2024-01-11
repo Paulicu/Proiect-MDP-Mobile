@@ -4,10 +4,10 @@ namespace Proiect_MDP_Mobile;
 
 public partial class RacketListPage : ContentPage
 {
-	public RacketListPage()
-	{
-		InitializeComponent();
-	}
+    public RacketListPage()
+    {
+        InitializeComponent();
+    }
 
     private async Task LoadRacketsAsync()
     {

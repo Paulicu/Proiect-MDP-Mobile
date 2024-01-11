@@ -1,4 +1,5 @@
 ﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,8 @@ namespace Proiect_MDP_Mobile.Models
         public decimal Weight { get; set; }
 
         public DateTime Edition { get; set; }
+
+        [ForeignKey(typeof(Shop))]
+        public int ShopID { get; set; }
     }
 }

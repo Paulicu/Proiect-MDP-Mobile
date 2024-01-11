@@ -1,13 +1,27 @@
+using Plugin.LocalNotification;
 using Proiect_MDP_Mobile.Models;
 
 namespace Proiect_MDP_Mobile;
 
 public partial class RacketEntryPage : ContentPage
 {
-	public RacketEntryPage()
-	{
-		InitializeComponent();
-	}
+    public RacketEntryPage()
+    {
+        InitializeComponent();
+
+        // Populare Picker cu magazinele existente
+        LoadShops();
+    }
+
+    private async void LoadShops()
+    {
+        var shops = await App.Database.GetShopsAsync();
+
+        foreach (var shop in shops)
+        {
+            pickerShop.Items.Add(shop.Name);
+        }
+    }
 
     private async void OnSaveRacketButtonClicked(object sender, EventArgs e)
     {
@@ -30,11 +44,13 @@ public partial class RacketEntryPage : ContentPage
             Material = entryMaterial.Text,
             Technology = entryTechnology.Text,
             Weight = weightValue,
-            Edition = datePickerEdition.Date 
+            Edition = datePickerEdition.Date,
+
+            // Setare ShopID cu ID-ul magazinului selectat
+            ShopID = pickerShop.SelectedIndex + 1 // +1 pentru a ajusta de la 0-based la 1-based index
         };
 
         await DisplayAlert("Success", "Racket added successfully!", "OK");
-
         await App.Database.SaveRacketAsync(newRacket);
         await Navigation.PopAsync();
     }

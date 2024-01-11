@@ -4,21 +4,25 @@
              x:Class="Proiect_MDP_Mobile.RacketViewPage"
              Title="Racket Details">
     <StackLayout>
-        <Label Text="Name:" />
-        <Label Text="{Binding Name}" />
+        <Label Text="Name" />
+        <Label x:Name="labelName" />
 
-        <Label Text="Material:" />
-        <Label Text="{Binding Material}" />
+        <Label Text="Material" />
+        <Label x:Name="labelMaterial" />
 
-        <Label Text="Technology:" />
-        <Label Text="{Binding Technology}" />
+        <Label Text="Technology" />
+        <Label x:Name="labelTechnology" />
 
-        <Label Text="Weight:" />
-        <Label Text="{Binding Weight}" />
+        <Label Text="Weight" />
+        <Label x:Name="labelWeight" />
 
-        <Label Text="Edition:" />
-        <Label Text="{Binding Edition}" />
+        <Label Text="Edition" />
+        <Label x:Name="labelEdition" />
 
+        <Label Text="Shop" />
+        <Label x:Name="labelShop" />
+
+        <Button Text="Edit" Clicked="OnEditRacketClicked" />
         <Button Text="Back to List" Clicked="OnBackToListClicked" />
     </StackLayout>
 </ContentPage>

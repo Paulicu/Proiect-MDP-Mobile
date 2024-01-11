@@ -9,19 +9,20 @@
 
             <!-- Titlu pentru Atelierul de Rachete de Tenis -->
             <Label
-                Text="Atelier Rachete Tenis"
+                Text="Tennis Racket Workshop"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" 
             />
 
             <!-- Descriere pentru Atelierul de Rachete de Tenis -->
             <Label
-                Text="Bine ați venit la atelierul nostru specializat în servicii și rachete de tenis. Oferim o gamă variată de servicii și rachete pentru a satisface nevoile tuturor jucătorilor de tenis."
+                Text="Welcome to our workshop specializing in tennis services and rackets. We offer a wide range of services and rackets to meet the needs of all tennis players."
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Atelier specializat în servicii și rachete de tenis" 
+                SemanticProperties.Description="Workshop specializing in tennis services and rackets" 
             />
 
+            <Image Source="logo.png" WidthRequest="200" HeightRequest="200" Aspect="AspectFit" />
             <!-- Buton pentru a naviga la pagina cu lista de rachete -->
             <Button
                 Text="See Rackets"

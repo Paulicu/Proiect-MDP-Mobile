@@ -19,6 +19,9 @@
         <Label Text="Edition" />
         <DatePicker x:Name="datePickerEdition" />
 
+        <Label Text="Select Shop" />
+        <Picker x:Name="pickerShop" />
+
         <Button Text="Save" Clicked="OnSaveRacketButtonClicked" />
     </StackLayout>
 </ContentPage>
