@@ -24,8 +24,14 @@
 
             <!-- Buton pentru a naviga la pagina cu lista de rachete -->
             <Button
-                Text="Vizualizare Rachete"
+                Text="See Rackets"
                 Clicked="OnViewRacketsClicked"
+                HorizontalOptions="Fill" 
+            />
+
+            <Button
+                Text="See Racket Reviews"
+                Clicked="OnViewReviewsClicked"
                 HorizontalOptions="Fill" 
             />
         </VerticalStackLayout>

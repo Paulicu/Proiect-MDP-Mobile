@@ -19,6 +19,7 @@ namespace Proiect_MDP_Mobile.Data
             _database.CreateTableAsync<ServiceType>().Wait();
             _database.CreateTableAsync<ListService>().Wait();
             _database.CreateTableAsync<Racket>().Wait();
+            _database.CreateTableAsync<Review>().Wait();
         }
 
         // Service List:
@@ -139,5 +140,37 @@ namespace Proiect_MDP_Mobile.Data
             return _database.UpdateAsync(racket);
         }
 
+
+        // -----------------------------------------------------------------------------------------------------------
+        // CRUD Operations for Reviews:
+
+        public Task<int> SaveReviewAsync(Review review)
+        {
+            if (review.ID != 0)
+            {
+                return _database.UpdateAsync(review);
+            }
+            else
+            {
+                return _database.InsertAsync(review);
+            }
+        }
+
+        public Task<List<Review>> GetReviewsAsync()
+        {
+            return _database.Table<Review>().ToListAsync();
+        }
+
+        public Task<List<Review>> GetReviewAsync(int racketId)
+        {
+            return _database.Table<Review>()
+                .Where(r => r.RacketID == racketId)
+                .ToListAsync();
+        }
+
+        public Task<int> DeleteReviewAsync(Review review)
+        {
+            return _database.DeleteAsync(review);
+        }
     }
 }

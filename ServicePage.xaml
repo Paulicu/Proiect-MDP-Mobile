@@ -6,16 +6,18 @@
     <ContentPage.Content xmlns:local="clr-namespace:Proiect_MDP_Mobile">
         <StackLayout Margin="20">
             <Editor Placeholder="Enter the description of the service"
-                    Text="{Binding Description}"
+                    Text="{Binding Description, Mode=TwoWay}"
                     HeightRequest="50" >
-
                 <Editor.Behaviors>
                     <local:ValidationBehaviour />
                 </Editor.Behaviors>
-
-           
-
             </Editor>
+
+            <Picker x:Name="RacketPicker"
+                    Title="Select a racket"
+                    HeightRequest="50" 
+            />
+            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

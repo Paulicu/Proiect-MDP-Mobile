@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_MDP_Mobile.ReviewEntryPage"
+             Title="Add Review">
+    <StackLayout>
+        <Label Text="User Name" />
+        <Entry x:Name="entryUserName" />
+
+        <Label Text="Comment" />
+        <Editor x:Name="entryComment" />
+
+        <Label Text="Rating" />
+        <Entry x:Name="entryRating" Keyboard="Numeric" />
+
+        <Label Text="Select Racket" />
+        <Picker x:Name="racketPicker"
+                Title="Select a Racket"
+                ItemDisplayBinding="{Binding Name}" 
+        />
+
+        <Button Text="Save" Clicked="OnSaveReviewButtonClicked" />
+    </StackLayout>
+</ContentPage>

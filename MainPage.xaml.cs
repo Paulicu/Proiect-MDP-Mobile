@@ -9,8 +9,12 @@
 
         private void OnViewRacketsClicked(object sender, EventArgs e)
         {
-            // Implementați logica pentru navigarea către pagina cu lista de rachete (RacketListPage)
             Navigation.PushAsync(new RacketListPage());
+        }
+
+        private void OnViewReviewsClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ReviewListPage());
         }
 
     }
