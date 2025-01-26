@@ -14,6 +14,16 @@
         />
 
         <ShellContent
+             Title="Services"
+             ContentTemplate="{DataTemplate local:ServiceListPage}"
+        />
+
+        <ShellContent
+              Title="Shops"
+              ContentTemplate="{DataTemplate local:ShopListPage}"
+        />
+
+        <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate local:AboutPage}"
         />

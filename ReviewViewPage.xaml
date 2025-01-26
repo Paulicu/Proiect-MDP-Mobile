@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_MDP_Mobile.ReviewViewPage"
+             Title="View Review">
+    <StackLayout>
+        <Label Text="User Name" />
+        <Label x:Name="labelUserName" />
+
+        <Label Text="Comment" />
+        <Label x:Name="labelComment" />
+
+        <Label Text="Rating" />
+        <Label x:Name="labelRating" />
+
+        <Label Text="Racket" />
+        <Label x:Name="labelRacket" />
+
+        <Button Text="Back" Clicked="OnBackButtonClicked" />
+    </StackLayout>
+</ContentPage>

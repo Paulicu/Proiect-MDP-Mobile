@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_MDP_Mobile.ServiceEntryPage"
+             Title="Add Service">
+    <StackLayout>
+        <Label Text="Type" />
+        <Entry x:Name="entryType" />
+
+        <Label Text="Description" />
+        <Entry x:Name="entryDescription" />
+
+        <Label Text="Date" />
+        <DatePicker x:Name="datePickerDate" />
+
+        <Label Text="Select Racket" />
+        <Picker x:Name="racketPicker" Title="Select Racket" SelectedIndexChanged="OnRacketPickerSelectedIndexChanged">
+            <!-- Add Rackets dynamically to the Picker -->
+        </Picker>
+
+        <Button Text="Save" Clicked="OnSaveServiceButtonClicked" />
+    </StackLayout>
+</ContentPage>
